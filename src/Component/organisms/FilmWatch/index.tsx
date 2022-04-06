@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import filmAPI from "../../../pages/api/axios/filmAPI";
-import Button from "../../atoms/Button";
+import Button from "../../atoms/Button/ButtonDefaut";
 
 interface IFilmWatchProps {
   id: number | string;
