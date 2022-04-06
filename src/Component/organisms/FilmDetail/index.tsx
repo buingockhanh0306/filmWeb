@@ -2,13 +2,15 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import filmAPI from "../../../pages/api/axios/filmAPI";
 import ButtonDefault from "../../atoms/Button/ButtonDefaut";
-
+import StarRate from "../../atoms/StarRate";
+import FilmInfor from "../../molecules/FilmInfor";
 export interface IFilmDetailProps {
   id: number | string;
   title: string;
   poster_path: string;
   overview: string;
   release_date: string;
+  vote_average: number;
 }
 const FilmDetail = () => {
   const router = useRouter();
@@ -18,12 +20,10 @@ const FilmDetail = () => {
     poster_path: "",
     overview: "",
     release_date: "",
+    vote_average: 0,
   });
   const idFilm = router.query.filmID;
-  const pathImage = "https://image.tmdb.org/t/p/w500";
-  const datetime = (dt: string) => {
-    return new Date(dt);
-  };
+
   useEffect(() => {
     const getFilmDetail = async () => {
       const film = await filmAPI.getFilmDetail(idFilm);
@@ -38,18 +38,16 @@ const FilmDetail = () => {
   };
 
   const renderFilm = () => {
+    console.log(films.vote_average);
+
     return (
-      <div className="flex w-full grid-cols-2 gap-4 mt-6">
-        <img src={pathImage + films.poster_path} alt="poster" />
-        <div>
-          <h1 className="text-6xl">{films.title}</h1>
-          <p className="py-6">{films.overview}</p>
-          <p className="">
-            Ra mắt {datetime(films.release_date).toLocaleDateString("vi")}
-          </p>
-          <p className="">Ra mắt {films.release_date}</p>
-        </div>
-      </div>
+      <FilmInfor
+        posterPath={films.poster_path}
+        title={films.title}
+        overview={films.overview}
+        releaseDate={films.release_date}
+        rate={films.vote_average}
+      />
     );
   };
 

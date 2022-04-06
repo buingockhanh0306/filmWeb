@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
+import ButtonCircle from "../../atoms/Button/ButtonCircle";
 
 interface IFilmCardProps {
   src: string;
@@ -12,12 +13,18 @@ const FilmCard: React.FC<IFilmCardProps> = ({ src, title, id }) => {
     router.push(`/${id}`);
   };
   return (
-    <div
-      onClick={handleDetailFilm}
-      className="flex flex-col border-2 cursor-pointer border-borderColor bg-cardColor"
-    >
-      <img className="h-full" src={src} alt="banner" />
-      <h5 className="py-2 font-bold text-center text-textColor">{title}</h5>
+    <div onClick={handleDetailFilm} className="flex flex-col">
+      <div className="relative">
+        <img
+          className="flex items-center justify-center h-full rounded"
+          src={src}
+          alt="banner"
+        />
+        <ButtonCircle />
+      </div>
+      <h5 className="py-2 font-bold text-center cursor-pointer text-textColor hover:text-secondColor">
+        {title}
+      </h5>
     </div>
   );
 };

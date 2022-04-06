@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FilmCard from "../../molecules/FilmCard";
 import filmAPI from "../../../pages/api/axios/filmAPI";
+import Line from "../../atoms/line";
 
 interface IFilmPopularProps {
   poster_path: string;
@@ -36,7 +37,15 @@ const FilmPopular: React.FC = () => {
       </div>
     ));
   };
-  return <div className="grid grid-cols-5 gap-4 mt-5">{renderFilm()}</div>;
+  return (
+    <div>
+      <h1 className="mt-12 mb-6 text-4xl text-textColor text-700">
+        Phim phổ biến
+      </h1>
+      <Line />
+      <div className="grid grid-cols-5 gap-4 mt-5">{renderFilm()}</div>
+    </div>
+  );
 };
 
 export default FilmPopular;

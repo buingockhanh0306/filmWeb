@@ -8,7 +8,9 @@ interface ILinkProps {
 const LinkNavbar: React.FC<ILinkProps> = ({ children, href }) => {
   return (
     <Link href={href}>
-      <li className="mx-10 cursor-pointer">{children}</li>
+      <li className="mx-10 cursor-pointer hover:text-secondColor">
+        {children}
+      </li>
     </Link>
   );
 };

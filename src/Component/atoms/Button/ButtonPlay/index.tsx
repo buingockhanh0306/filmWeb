@@ -10,7 +10,7 @@ const ButtonPlay: React.FC<IButtonPlayProps> = ({
 }) => {
   return (
     <button
-      className="flex items-center justify-around h-10 px-4 text-white bg-red-500 rounded "
+      className="flex items-center justify-around h-10 px-4 text-white rounded bg-secondColor "
       onClick={onClick}
       {...props}
     >
