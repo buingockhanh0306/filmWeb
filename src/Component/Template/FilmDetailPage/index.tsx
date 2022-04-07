@@ -3,7 +3,7 @@ import Banner from "../../atoms/Banner";
 import FilmDetail from "../../organisms/FilmDetail";
 import FilmPopular from "../../organisms/FilmPopular";
 
-const DetailPage = () => {
+const FilmDetailPage = () => {
   return (
     <div className="bg-primaryColor">
       <div className="container h-full mx-auto">
@@ -13,4 +13,4 @@ const DetailPage = () => {
   );
 };
 
-export default DetailPage;
+export default FilmDetailPage;

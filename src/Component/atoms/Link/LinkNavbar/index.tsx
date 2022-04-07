@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { ILinkProps } from "../ILinkProps";
+import { ILinkProps } from "../../../../../types/IProps";
+
 const LinkNavbar: React.FC<ILinkProps> = ({ children, href }) => {
   return (
     <Link href={href}>

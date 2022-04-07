@@ -1,8 +1,8 @@
 import React from "react";
-import DetailPage from "../../../Component/Template/DetailPage";
+import FilmDetailPage from "../../../Component/Template/FilmDetailPage";
 
 const filmID = () => {
-  return <DetailPage />;
+  return <FilmDetailPage />;
 };
 
 export default filmID;

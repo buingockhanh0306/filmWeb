@@ -1,28 +1,36 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { IFilmProps } from "../../../../types/IProps";
+import { ITVProps } from "../../../../types/IProps";
 import filmAPI from "../../../pages/api/axios/filmAPI";
 import ButtonDefault from "../../atoms/Button/ButtonDefaut";
-import StarRate from "../../atoms/StarRate";
 import FilmInfor from "../../molecules/FilmInfor";
 
-type IFilmDetail = Omit<IFilmProps, "id" | "backdrop_path">;
+type ITVDetail = Pick<
+  ITVProps,
+  | "name"
+  | "poster_path"
+  | "release_date"
+  | "overview"
+  | "vote_average"
+  | "vote_count"
+  | "episode_run_time"
+>;
 const FilmDetail = () => {
   const router = useRouter();
-  const [films, setFilms] = useState<IFilmDetail>({
-    title: "",
+  const [films, setFilms] = useState<ITVDetail>({
+    name: "",
     poster_path: "",
     overview: "",
     release_date: "",
     vote_average: 0,
     vote_count: 0,
-    runtime: 0,
+    episode_run_time: 0,
   });
-  const idFilm = router.query.filmID;
+  const idFilm = router.query.tvID;
 
   useEffect(() => {
     const getFilmDetail = async () => {
-      const film = await filmAPI.getFilmDetail(idFilm);
+      const film = await filmAPI.getTVDetail(idFilm);
       setFilms(film.data);
       console.log(film.data);
     };
@@ -30,19 +38,19 @@ const FilmDetail = () => {
   }, []);
 
   const handleWatchFilm = () => {
-    router.push(`/movie/${idFilm}/watch`);
+    router.push(`/tv/${idFilm}/watch`);
   };
 
   const renderFilm = () => {
     return (
       <FilmInfor
         poster_path={films.poster_path}
-        title={films.title}
+        title={films.name}
         overview={films.overview}
         release_date={films.release_date}
         vote_average={films.vote_average}
         vote_count={films.vote_count}
-        runtime={films.runtime}
+        runtime={films.episode_run_time}
       />
     );
   };

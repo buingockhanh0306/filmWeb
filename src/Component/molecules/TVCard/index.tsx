@@ -10,7 +10,7 @@ interface ITVCardProps {
 const TVCard: React.FC<ITVCardProps> = ({ src, name, id }) => {
   const router = useRouter();
   const handleDetailTV = () => {
-    router.push(`/${id}`);
+    router.push(`/tv/${id}`);
   };
   return (
     <div onClick={handleDetailTV} className="flex flex-col cursor-pointer">
@@ -20,7 +20,6 @@ const TVCard: React.FC<ITVCardProps> = ({ src, name, id }) => {
           src={src}
           alt="banner"
         />
-        {/* <ButtonCircle /> */}
       </div>
       <h5 className="py-2 font-bold text-center cursor-pointer text-textColor hover:text-secondColor">
         {name}

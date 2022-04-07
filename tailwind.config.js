@@ -12,6 +12,7 @@ module.exports = {
         secondColor: "#F65F54",
         lineColor: "#383838",
         headerColor: "#121212",
+        starColor: "#ffd700",
       },
       keyframes: {
         wiggle: {

@@ -1,34 +1,32 @@
 import React, { useEffect, useState } from "react";
-import FilmCard from "../../molecules/FilmCard";
+import { IFilmProps } from "../../../../types/IProps";
 import filmAPI from "../../../pages/api/axios/filmAPI";
+import Heading from "../../atoms/Heading";
 import Line from "../../atoms/line";
+import ImageCard from "../../molecules/ImageCard";
 
-interface IFilmPopularProps {
-  poster_path: string;
-  title: string;
-  id: string | number;
-  backdrop_path: string;
-}
-[];
+type IFilmPopularProps = Pick<
+  IFilmProps,
+  "poster_path" | "title" | "id" | "backdrop_path"
+>;
 
 const FilmPopular: React.FC = () => {
   const [films, setFilms] = useState<IFilmPopularProps[]>([]);
   const pathImage = "https://image.tmdb.org/t/p/w500";
 
-  const getFilm: () => Promise<void> = async () => {
-    const film = await filmAPI.getFilmPopular();
-    setFilms(film.data.results);
-    console.log(film.data.results);
-  };
-
   useEffect(() => {
+    const getFilm: () => Promise<void> = async () => {
+      const film = await filmAPI.getFilmPopular();
+      setFilms(film.data.results);
+    };
     getFilm();
   }, []);
 
   const renderFilm = () => {
     return films.map((film, index) => (
       <div key={index}>
-        <FilmCard
+        <ImageCard
+          category="movie"
           id={film.id}
           key={index}
           src={pathImage + film.backdrop_path}
@@ -39,10 +37,7 @@ const FilmPopular: React.FC = () => {
   };
   return (
     <div>
-      <h1 className="mt-12 mb-6 text-4xl text-textColor text-700">
-        Movie Popular
-      </h1>
-      <Line />
+      <Heading children="Film Popular" />
       <div className="grid grid-cols-5 gap-4 mt-5">{renderFilm()}</div>
     </div>
   );
