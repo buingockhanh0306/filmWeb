@@ -2,18 +2,18 @@ import { useRouter } from "next/router";
 import React from "react";
 import ButtonCircle from "../../atoms/Button/ButtonCircle";
 
-interface IFilmCardProps {
+interface ITVCardProps {
   src: string;
-  title: string;
+  name: string;
   id: string | number;
 }
-const FilmCard: React.FC<IFilmCardProps> = ({ src, title, id }) => {
+const TVCard: React.FC<ITVCardProps> = ({ src, name, id }) => {
   const router = useRouter();
-  const handleDetailFilm = () => {
-    router.push(`/movie/${id}`);
+  const handleDetailTV = () => {
+    router.push(`/${id}`);
   };
   return (
-    <div onClick={handleDetailFilm} className="flex flex-col cursor-pointer">
+    <div onClick={handleDetailTV} className="flex flex-col cursor-pointer">
       <div className="relative">
         <img
           className="flex items-center justify-center h-full rounded hover:animate-[zoomIn_1s_ease]"
@@ -23,10 +23,10 @@ const FilmCard: React.FC<IFilmCardProps> = ({ src, title, id }) => {
         {/* <ButtonCircle /> */}
       </div>
       <h5 className="py-2 font-bold text-center cursor-pointer text-textColor hover:text-secondColor">
-        {title}
+        {name}
       </h5>
     </div>
   );
 };
 
-export default FilmCard;
+export default TVCard;

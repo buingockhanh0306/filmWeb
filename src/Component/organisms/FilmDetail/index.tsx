@@ -34,7 +34,7 @@ const FilmDetail = () => {
   }, []);
 
   const handleWatchFilm = () => {
-    router.push(`/${idFilm}/watch`);
+    router.push(`/movie/${idFilm}/watch`);
   };
 
   const renderFilm = () => {

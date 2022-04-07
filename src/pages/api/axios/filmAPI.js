@@ -10,6 +10,10 @@ const filmAPI = {
     const url = `movie/${id}`;
     return axiosClient.get(url);
   },
+  // getTVPopular: (params) => {
+  //   const url = "/tv/popular";
+  //   return axiosClient.get(url, { params });
+  // },
 };
 
 export default filmAPI;

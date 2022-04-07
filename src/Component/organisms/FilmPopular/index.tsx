@@ -40,7 +40,7 @@ const FilmPopular: React.FC = () => {
   return (
     <div>
       <h1 className="mt-12 mb-6 text-4xl text-textColor text-700">
-        Phim phổ biến
+        Movie Popular
       </h1>
       <Line />
       <div className="grid grid-cols-5 gap-4 mt-5">{renderFilm()}</div>
