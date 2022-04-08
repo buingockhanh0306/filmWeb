@@ -10,7 +10,7 @@ const ButtonPlay: React.FC<IButtonPlayProps> = ({
 }) => {
   return (
     <button
-      className="flex items-center justify-around h-10 px-4 text-white rounded bg-secondColor hover:animate-[zoomIn_1s_ease]"
+      className="flex items-center justify-around h-10 px-4 text-white rounded bg-lime-800 hover:animate-[zoomIn_1s_ease]"
       onClick={onClick}
       {...props}
     >

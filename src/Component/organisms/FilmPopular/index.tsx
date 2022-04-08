@@ -39,7 +39,6 @@ const FilmPopular: React.FC = () => {
           genre.id == arrGenreID[i] ? arrGenres.push(genre.name) : null;
         }
       });
-      console.log(arrGenres);
       return (
         <div key={index}>
           <ImageCard

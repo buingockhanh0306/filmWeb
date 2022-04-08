@@ -49,8 +49,8 @@ const TVTop: React.FC = () => {
             }
           });
           return (
-            <div>
-              <div key={index} className="mx-2 my-4">
+            <div key={index}>
+              <div className="mx-2 my-4">
                 <ImageCard
                   category="movie"
                   id={film.id}

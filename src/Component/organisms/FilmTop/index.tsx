@@ -24,7 +24,6 @@ const FilmTop: React.FC = () => {
     const getFilm: () => Promise<void> = async () => {
       const film = await filmAPI.getFilmTop();
       setFilms(film.data.results);
-      console.log(film.data);
     };
     getFilm();
   }, []);
@@ -50,12 +49,11 @@ const FilmTop: React.FC = () => {
             }
           });
           return (
-            <div>
-              <div key={index} className="mx-2 my-4">
+            <div key={index}>
+              <div className="mx-2 my-4">
                 <ImageCard
                   category="movie"
                   id={film.id}
-                  key={index}
                   src={pathImage + film.backdrop_path}
                   title={film.title}
                   genres={arrGenres.join(" / ")}

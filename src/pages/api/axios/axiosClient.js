@@ -8,6 +8,7 @@ const axiosClient = axios.create({
   },
   params: {
     api_key: "461216745fbea586a0d4e6b9b73afefc",
+    append_to_response: "videos",
   },
   paramsSerializer: (params) => queryString.stringify(params),
 });

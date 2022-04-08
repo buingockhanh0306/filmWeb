@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { IFilmProps } from "../../../../types/IProps";
 import filmAPI from "../../../pages/api/axios/filmAPI";
-import ButtonDefault from "../../atoms/Button/ButtonDefaut";
-import StarRate from "../../atoms/StarRate";
+import ButtonPlay from "../../atoms/Button/ButtonPlay";
+import ButtonTrailer from "../../atoms/Button/ButtonTrailer";
+import ImagePoster from "../../atoms/ImagePoster";
 import FilmInfor from "../../molecules/FilmInfor";
 
 type IFilmDetail = Omit<IFilmProps, "id" | "backdrop_path" | "genre_ids">;
@@ -13,13 +14,13 @@ const FilmDetail = () => {
   const [genres, setGenres] = useState<IGenre[]>([]);
   const [films, setFilms] = useState<IFilmDetail>({
     title: "",
-    poster_path: "",
     overview: "",
     release_date: "",
     vote_average: 0,
     vote_count: 0,
     runtime: 0,
     name: "",
+    poster_path: "",
   });
   const idFilm = router.query.filmID;
 
@@ -39,7 +40,6 @@ const FilmDetail = () => {
   const renderFilm = () => {
     return (
       <FilmInfor
-        poster_path={films.poster_path}
         title={films.title}
         overview={films.overview}
         release_date={films.release_date}
@@ -52,9 +52,15 @@ const FilmDetail = () => {
   };
 
   return (
-    <div className="grid gap-4 text-textColor">
-      {renderFilm()}
-      <ButtonDefault onClick={() => handleWatchFilm()} children="Xem phim" />
+    <div className="flex gap-8 p-4 text-textColor">
+      <ImagePoster poster_path={films.poster_path} />
+      <div>
+        {renderFilm()}
+        <div className="flex justify-between mt-4 w-72">
+          <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
+          <ButtonTrailer onClick={() => handleWatchFilm()} children="Trailer" />
+        </div>
+      </div>
     </div>
   );
 };
