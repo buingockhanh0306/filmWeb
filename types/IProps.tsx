@@ -17,7 +17,6 @@ export interface ILinkProps {
   href: string;
 }
 export interface ITVProps {
-  poster_path: string;
   name: string;
   overview: string;
   release_date: string;
