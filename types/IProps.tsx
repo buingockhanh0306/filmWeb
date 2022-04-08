@@ -8,6 +8,8 @@ export interface IFilmProps {
   runtime: number;
   id: number;
   backdrop_path: string;
+  name: string;
+  genre_ids: number[];
 }
 
 export interface ILinkProps {
@@ -24,4 +26,9 @@ export interface ITVProps {
   episode_run_time: number;
   id: number;
   backdrop_path: string;
+  genre_ids: number[];
+}
+export interface IGenresProps {
+  name: string;
+  id: number;
 }

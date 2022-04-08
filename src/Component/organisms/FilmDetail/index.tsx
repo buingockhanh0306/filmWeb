@@ -6,9 +6,11 @@ import ButtonDefault from "../../atoms/Button/ButtonDefaut";
 import StarRate from "../../atoms/StarRate";
 import FilmInfor from "../../molecules/FilmInfor";
 
-type IFilmDetail = Omit<IFilmProps, "id" | "backdrop_path">;
+type IFilmDetail = Omit<IFilmProps, "id" | "backdrop_path" | "genre_ids">;
+type IGenre = Pick<IFilmProps, "name">;
 const FilmDetail = () => {
   const router = useRouter();
+  const [genres, setGenres] = useState<IGenre[]>([]);
   const [films, setFilms] = useState<IFilmDetail>({
     title: "",
     poster_path: "",
@@ -17,6 +19,7 @@ const FilmDetail = () => {
     vote_average: 0,
     vote_count: 0,
     runtime: 0,
+    name: "",
   });
   const idFilm = router.query.filmID;
 
@@ -24,7 +27,7 @@ const FilmDetail = () => {
     const getFilmDetail = async () => {
       const film = await filmAPI.getFilmDetail(idFilm);
       setFilms(film.data);
-      console.log(film.data);
+      setGenres(film.data.genres);
     };
     getFilmDetail();
   }, []);
@@ -43,6 +46,7 @@ const FilmDetail = () => {
         vote_average={films.vote_average}
         vote_count={films.vote_count}
         runtime={films.runtime}
+        name={genres.map((genre) => genre.name).join(" / ")}
       />
     );
   };

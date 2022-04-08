@@ -3,7 +3,7 @@ import { IFilmProps } from "../../../../types/IProps";
 import StarRate from "../../atoms/StarRate";
 import { AiFillStar } from "react-icons/ai";
 
-type IFilmInForProps = Omit<IFilmProps, "id" | "backdrop_path">;
+type IFilmInForProps = Omit<IFilmProps, "id" | "backdrop_path" | "genre_ids">;
 const FilmInfor: React.FC<IFilmInForProps> = ({
   poster_path,
   title,
@@ -12,6 +12,7 @@ const FilmInfor: React.FC<IFilmInForProps> = ({
   vote_average,
   vote_count,
   runtime,
+  name,
 }) => {
   const datetime = (dt: string) => {
     return new Date(dt);
@@ -22,6 +23,7 @@ const FilmInfor: React.FC<IFilmInForProps> = ({
       <img className="rounded" src={pathImage + poster_path} alt="poster" />
       <div>
         <h1 className="text-6xl">{title}</h1>
+        <p className="py-6">{name}</p>
         <p className="mt-4">Thời lượng: {runtime} phút</p>
         <p className="py-6">{overview}</p>
         <p className="">
