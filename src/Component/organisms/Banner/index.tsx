@@ -24,7 +24,6 @@ const Banner: React.FC = () => {
     const getFilmDetail = async () => {
       const film = await filmAPI.getFilmTop();
       setFilms(film.data.results[0]);
-      console.log(film.data.results[0]);
     };
     getFilmDetail();
   }, []);

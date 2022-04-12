@@ -20,7 +20,7 @@ type IFilmDetail = Pick<
   | "name"
 >;
 type IGenre = Pick<IFilmProps, "name">;
-type IFilmCredit = Pick<IFilmProps, "name" | "profile_path">;
+type IFilmCredit = Pick<IFilmProps, "name" | "profile_path" | "character">;
 const FilmDetail = () => {
   const image_path = "https://image.tmdb.org/t/p/w500";
   const router = useRouter();
@@ -66,6 +66,7 @@ const FilmDetail = () => {
         <FilmCredits
           name={cre.name}
           profile_path={image_path + cre.profile_path}
+          character={cre.character}
         />
       ) : (
         ""
@@ -92,7 +93,7 @@ const FilmDetail = () => {
       <div>
         {renderFilm()}
         <div className="flex justify-between mt-4 w-72">
-          <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
+          <ButtonPlay onClick={() => handleWatchFilm()} children="Watch" />
           <ButtonTrailer onClick={() => handleWatchFilm()} children="Trailer" />
         </div>
         <div className="grid w-full grid-cols-2 mt-4">{renderCredit()}</div>

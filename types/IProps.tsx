@@ -12,6 +12,13 @@ export interface IFilmProps {
   genre_ids: number[];
   key: string;
   profile_path: string;
+  character: string;
+  username: string;
+  avatar_path: string;
+  rating: number;
+  author: string;
+  content: string;
+  author_detail: string[] | number[];
 }
 
 export interface ILinkProps {

@@ -53,6 +53,10 @@ const filmAPI = {
     const url = `/movie/${id}/recommendations`;
     return axiosClient.get(url);
   },
+  getFilmReview: (id) => {
+    const url = `/movie/${id}/reviews`;
+    return axiosClient.get(url);
+  },
 };
 
 export default filmAPI;

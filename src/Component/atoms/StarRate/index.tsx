@@ -3,12 +3,13 @@ import ReactStars from "react-stars";
 
 interface IStarProps {
   star: number;
+  size: number;
 }
-const StarRate: React.FC<IStarProps> = ({ star }) => {
+const StarRate: React.FC<IStarProps> = ({ star, size }) => {
   return (
     <ReactStars
       count={10}
-      size={30}
+      size={size}
       value={star}
       edit={false}
       color2={"#ffd700"}

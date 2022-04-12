@@ -5,6 +5,8 @@ import FilmTop from "../../organisms/FilmTop";
 import TVTop from "../../organisms/TVTop";
 
 const HomePage = () => {
+  console.log(process.env.THE_MOVIE_DB_API);
+
   return (
     <div className="bg-primaryColor">
       <Banner />
