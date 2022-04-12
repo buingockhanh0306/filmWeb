@@ -1,13 +1,13 @@
 import React from "react";
-import Banner from "../../atoms/Banner";
 import FilmDetail from "../../organisms/FilmDetail";
-import FilmPopular from "../../organisms/FilmPopular";
+import FilmRecommended from "../../organisms/FilmRecommended";
 
 const FilmDetailPage = () => {
   return (
     <div className="bg-primaryColor">
       <div className="container h-full mx-auto">
         <FilmDetail />
+        <FilmRecommended />
       </div>
     </div>
   );

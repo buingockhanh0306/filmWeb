@@ -10,6 +10,8 @@ export interface IFilmProps {
   backdrop_path: string;
   name: string;
   genre_ids: number[];
+  key: string;
+  profile_path: string;
 }
 
 export interface ILinkProps {

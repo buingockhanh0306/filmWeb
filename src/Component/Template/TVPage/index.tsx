@@ -1,11 +1,11 @@
 import React from "react";
-import Banner from "../../atoms/Banner";
+import Banner from "../../organisms/Banner";
 // import TVPopular from "../../organisms/TVPopular";
 
 const TVPage = () => {
   return (
     <div className="bg-primaryColor">
-      <Banner />
+      {/* <Banner /> */}
       <div className="container h-full mx-auto">{/* <TVPopular /> */}</div>
     </div>
   );

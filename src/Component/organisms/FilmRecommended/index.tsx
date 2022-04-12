@@ -3,11 +3,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Heading from "../../atoms/Heading";
-import { IFilmProps, IGenresProps, ITVProps } from "../../../../types/IProps";
+import { IFilmProps, IGenresProps } from "../../../../types/IProps";
 import filmAPI from "../../../pages/api/axios/filmAPI";
 import ImageCard from "../../molecules/ImageCard";
+import { useRouter } from "next/router";
 
-const TVTop: React.FC = () => {
+const FilmRecommended: React.FC = () => {
   const settings = {
     dots: false,
     infinite: false,
@@ -15,14 +16,16 @@ const TVTop: React.FC = () => {
     slidesToShow: 5,
     slidesToScroll: 5,
   };
-  const [films, setFilms] = useState<ITVProps[]>([]);
+  const [films, setFilms] = useState<IFilmProps[]>([]);
   const [genres, setGenres] = useState<IGenresProps[]>([]);
+  const router = useRouter();
+  const idFilm = router.query.filmID;
 
   const pathImage = "https://image.tmdb.org/t/p/w500";
 
   useEffect(() => {
     const getFilm: () => Promise<void> = async () => {
-      const film = await filmAPI.getTVTop();
+      const film = await filmAPI.getFilmRecommended(idFilm);
       setFilms(film.data.results);
     };
     getFilm();
@@ -30,7 +33,7 @@ const TVTop: React.FC = () => {
 
   useEffect(() => {
     const getGenres = async () => {
-      const genre = await filmAPI.getGenresTV();
+      const genre = await filmAPI.getGenres();
       setGenres(genre.data.genres);
     };
     getGenres();
@@ -38,7 +41,7 @@ const TVTop: React.FC = () => {
 
   return (
     <div>
-      <Heading children="TV Top Rated" />
+      <Heading children="Recommended Films" />
       <Slider {...settings} className="grid grid-cols-5">
         {films.map((film, index) => {
           const arrGenreID = film.genre_ids.map((i) => i);
@@ -54,9 +57,8 @@ const TVTop: React.FC = () => {
                 <ImageCard
                   category="movie"
                   id={film.id}
-                  key={index}
                   src={pathImage + film.backdrop_path}
-                  title={film.name}
+                  title={film.title}
                   genres={arrGenres.join(" / ")}
                 />
               </div>
@@ -68,4 +70,4 @@ const TVTop: React.FC = () => {
   );
 };
 
-export default TVTop;
+export default FilmRecommended;

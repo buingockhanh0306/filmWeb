@@ -10,9 +10,18 @@ const filmAPI = {
     const url = "movie/top_rated";
     return axiosClient.get(url, { params });
   },
+  getFilmLatest: (params) => {
+    const url = "/movie/latest";
+    return axiosClient.get(url, { params });
+  },
 
   getFilmDetail: (id) => {
     const url = `movie/${id}`;
+    return axiosClient.get(url);
+  },
+
+  getFilmTrailer: (id) => {
+    const url = `movie/${id}/`;
     return axiosClient.get(url);
   },
 
@@ -35,6 +44,14 @@ const filmAPI = {
   getGenresTV: (params) => {
     const url = "/genre/tv/list";
     return axiosClient.get(url, { params });
+  },
+  getFilmCredits: (id) => {
+    const url = `/movie/${id}/credits`;
+    return axiosClient.get(url);
+  },
+  getFilmRecommended: (id) => {
+    const url = `/movie/${id}/recommendations`;
+    return axiosClient.get(url);
   },
 };
 

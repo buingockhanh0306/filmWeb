@@ -6,12 +6,26 @@ import ButtonPlay from "../../atoms/Button/ButtonPlay";
 import ButtonTrailer from "../../atoms/Button/ButtonTrailer";
 import ImagePoster from "../../atoms/ImagePoster";
 import FilmInfor from "../../molecules/FilmInfor";
+import FilmCredits from "../../molecules/FilmCredits";
 
-type IFilmDetail = Omit<IFilmProps, "id" | "backdrop_path" | "genre_ids">;
+type IFilmDetail = Pick<
+  IFilmProps,
+  | "title"
+  | "overview"
+  | "poster_path"
+  | "release_date"
+  | "vote_average"
+  | "vote_count"
+  | "runtime"
+  | "name"
+>;
 type IGenre = Pick<IFilmProps, "name">;
+type IFilmCredit = Pick<IFilmProps, "name" | "profile_path">;
 const FilmDetail = () => {
+  const image_path = "https://image.tmdb.org/t/p/w500";
   const router = useRouter();
   const [genres, setGenres] = useState<IGenre[]>([]);
+  const [filmCredits, setFilmCredits] = useState<IFilmCredit[]>([]);
   const [films, setFilms] = useState<IFilmDetail>({
     title: "",
     overview: "",
@@ -23,6 +37,15 @@ const FilmDetail = () => {
     poster_path: "",
   });
   const idFilm = router.query.filmID;
+
+  useEffect(() => {
+    const getFilmCredits = async () => {
+      const film = await filmAPI.getFilmCredits(idFilm);
+      setFilmCredits(film.data.cast);
+      console.log(film.data.cast);
+    };
+    getFilmCredits();
+  }, []);
 
   useEffect(() => {
     const getFilmDetail = async () => {
@@ -37,6 +60,18 @@ const FilmDetail = () => {
     router.push(`/movie/${idFilm}/watch`);
   };
 
+  const renderCredit = () => {
+    return filmCredits.map((cre, index) => {
+      return cre.profile_path !== null && index < 8 ? (
+        <FilmCredits
+          name={cre.name}
+          profile_path={image_path + cre.profile_path}
+        />
+      ) : (
+        ""
+      );
+    });
+  };
   const renderFilm = () => {
     return (
       <FilmInfor
@@ -60,6 +95,7 @@ const FilmDetail = () => {
           <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
           <ButtonTrailer onClick={() => handleWatchFilm()} children="Trailer" />
         </div>
+        <div className="grid w-full grid-cols-2 mt-4">{renderCredit()}</div>
       </div>
     </div>
   );

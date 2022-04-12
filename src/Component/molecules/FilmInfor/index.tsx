@@ -4,9 +4,15 @@ import StarRate from "../../atoms/StarRate";
 import { AiFillStar } from "react-icons/ai";
 import ButtonDefault from "../../atoms/Button/ButtonDefaut";
 
-type IFilmInForProps = Omit<
+type IFilmInForProps = Pick<
   IFilmProps,
-  "id" | "backdrop_path" | "genre_ids" | "poster_path"
+  | "title"
+  | "overview"
+  | "release_date"
+  | "vote_average"
+  | "vote_count"
+  | "runtime"
+  | "name"
 >;
 const FilmInfor: React.FC<IFilmInForProps> = ({
   title,
