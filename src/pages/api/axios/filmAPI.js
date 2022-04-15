@@ -29,8 +29,8 @@ const filmAPI = {
     const url = "/tv/popular";
     return axiosClient.get(url, { params });
   },
-  getTVTop: (params) => {
-    const url = "/tv/top_rated";
+  getFilmTrending: (params) => {
+    const url = "/trending/movie/day";
     return axiosClient.get(url, { params });
   },
   getTVDetail: (id) => {
@@ -54,7 +54,7 @@ const filmAPI = {
     return axiosClient.get(url);
   },
   getFilmReview: (id) => {
-    const url = `/movie/${id}/reviews`;
+    const url = `/reviews/${id}`;
     return axiosClient.get(url);
   },
 };

@@ -29,17 +29,17 @@ const FilmInfor: React.FC<IFilmInForProps> = ({
   return (
     <div>
       <h1 className="text-6xl text-secondColor">{title}</h1>
-      <p className="py-6">Genres: {name}</p>
+      <p className="py-6">Thể loại: {name}</p>
       <p className="">
-        Release {datetime(release_date).toLocaleDateString("en")}
+        Ngày phát hành: {datetime(release_date).toLocaleDateString("vi")}
       </p>
-      <p className="mt-4">Time: {runtime} minutes</p>
+      <p className="mt-4">Thời lượng: {runtime} phút</p>
       <p className="py-6">{overview}</p>
-      <StarRate size={30} star={vote_average} />
+      <StarRate edit={false} size={30} star={vote_average} />
       <span>
         ({vote_average}
         <AiFillStar className="inline mx-1 mb-1 text-starColor" />/{vote_count}{" "}
-        reviews)
+        lượt bình chọn)
       </span>
     </div>
   );

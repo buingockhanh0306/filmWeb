@@ -36,7 +36,7 @@ const Footer = () => {
           <GroupContact />
         </div>
       </div>
-      <div className="container mx-auto my-6">
+      <div className="container mx-auto mt-6">
         <Line />
         <p className="text-sm text-left text-lineColor">@ Copyright 2022</p>
       </div>

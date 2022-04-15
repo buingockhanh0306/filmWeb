@@ -14,7 +14,7 @@ const Header = () => {
     <div className="flex items-center justify-between px-10 py-4 bg-headerColor">
       <div className="flex items-center">
         <Logo />
-        <Navbar />
+        {/* <Navbar /> */}
       </div>
       <div className="flex items-center">
         {open ? <SearchBar /> : ""}

@@ -11,7 +11,7 @@ const SearchBar = () => {
       </span>
       <input
         className="w-full h-8 py-2 pr-3 border rounded-md text-textColor bg-primaryColor placeholder:italic placeholder:text-slate-400 border-slate-300 pl-9 focus:outline-none focus:border-secondColor sm:text-sm"
-        placeholder="Search..."
+        placeholder="Tìm kiếm..."
         type="text"
         name="search"
       />

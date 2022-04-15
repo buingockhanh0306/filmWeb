@@ -41,7 +41,7 @@ const FilmRecommended: React.FC = () => {
 
   return (
     <div>
-      <Heading children="Recommended Films" />
+      <Heading children="Phim liên quan" />
       <Slider {...settings} className="grid grid-cols-5">
         {films.map((film, index) => {
           const arrGenreID = film.genre_ids.map((i) => i);

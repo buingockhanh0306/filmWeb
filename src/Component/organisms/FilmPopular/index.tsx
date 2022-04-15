@@ -55,7 +55,7 @@ const FilmPopular: React.FC = () => {
   };
   return (
     <div>
-      <Heading children="Film Popular" />
+      <Heading children="Phim phổ biến" />
       <div className="grid grid-cols-5 gap-4 mt-5">{renderFilm()}</div>
     </div>
   );

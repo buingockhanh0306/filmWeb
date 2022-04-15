@@ -22,7 +22,7 @@ const FilmItem: React.FC<IFilmItemProps> = ({
       <img className="mr-3 w-14 h-14" src={poster_path} alt="" />
       <div>
         <p className="text-textColor hover:text-secondColor">{title}</p>
-        <StarRate size={18} star={vote_average} />
+        <StarRate edit={false} size={18} star={vote_average} />
       </div>
     </div>
   );

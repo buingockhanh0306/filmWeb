@@ -10,10 +10,12 @@ import ImageCard from "../../molecules/ImageCard";
 const FilmTop: React.FC = () => {
   const settings = {
     dots: false,
-    infinite: false,
-    speed: 500,
+    infinite: true,
     slidesToShow: 5,
     slidesToScroll: 5,
+    autoplay: true,
+    speed: 500,
+    autoplaySpeed: 6000,
   };
   const [films, setFilms] = useState<IFilmProps[]>([]);
   const [genres, setGenres] = useState<IGenresProps[]>([]);
@@ -38,7 +40,7 @@ const FilmTop: React.FC = () => {
 
   return (
     <div>
-      <Heading children="Film Top Rated" />
+      <Heading children="Top Phim" />
       <Slider {...settings} className="grid grid-cols-5">
         {films.map((film, index) => {
           const arrGenreID = film.genre_ids.map((i) => i);

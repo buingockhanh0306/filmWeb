@@ -27,8 +27,8 @@ const GroupIcons: React.FC<IGroupIcon> = ({ clickSearch }) => {
       <div className="relative group">
         <FaUserCircle className="mx-2 cursor-pointer" />
         <ul className="absolute z-10 hidden px-4 rounded cursor-pointer group-hover:block -right-1 top-8 w-36 bg-primaryColor text-textColor">
-          <LinkDropdown children="Login" />
-          <LinkDropdown children="SignUp" />
+          <LinkDropdown children="Đăng nhập" />
+          <LinkDropdown children="Đăng ký" />
           <div className="absolute w-4 h-4 rotate-45 bg-primaryColor -top-2 right-4"></div>
           <div className="absolute right-0 h-4 bg-transparent w-36 -top-3"></div>
         </ul>

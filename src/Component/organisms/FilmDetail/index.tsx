@@ -92,10 +92,14 @@ const FilmDetail = () => {
       <ImagePoster poster_path={films.poster_path} />
       <div>
         {renderFilm()}
-        <div className="flex justify-between mt-4 w-72">
-          <ButtonPlay onClick={() => handleWatchFilm()} children="Watch" />
-          <ButtonTrailer onClick={() => handleWatchFilm()} children="Trailer" />
+        <div className="flex justify-between mt-4 w-80">
+          <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
+          <ButtonTrailer
+            onClick={() => handleWatchFilm()}
+            children="Xem trailer"
+          />
         </div>
+        <h3 className="mt-8">Một số diễn viên: </h3>
         <div className="grid w-full grid-cols-2 mt-4">{renderCredit()}</div>
       </div>
     </div>
