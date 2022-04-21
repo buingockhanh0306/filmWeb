@@ -68,12 +68,11 @@ const FilmWatch = () => {
       <iframe
         width={"100%"}
         height={"480px"}
-        src={`https://www.youtube.com/embed/${filmTrailers}`}
-        title="YouTube video player"
-        frameBorder={0}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-      />
+        id="iframe"
+        src={`https://www.2embed.ru/embed/tmdb/movie?id=${idFilm}`}
+        frameBorder="0"
+      ></iframe>
     );
   };
 
