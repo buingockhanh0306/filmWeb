@@ -6,19 +6,18 @@ import filmAPI from "../../../pages/api/axios/filmAPI";
 import Line from "../../atoms/line";
 import StarRate from "../../atoms/StarRate";
 import FilmItem from "../../molecules/FilmItem";
-import FilmReview from "../FilmReview";
 import FilmTop from "../FilmTop";
 
 type IFilmDetailProps = Pick<
   IFilmProps,
   "title" | "poster_path" | "vote_average" | "vote_count"
 >;
-const FilmWatch = () => {
+
+const FilmWatch: React.FC<any> = ({ watchLink }) => {
   const pathImage = "https://image.tmdb.org/t/p/w500";
 
   const router = useRouter();
   const idFilm = router.query.filmID;
-  const [filmTrailers, setFilmTrailers] = useState<string>("");
   const [rate, setRate] = useState<string>("");
   const [vote, setVote] = useState<number>(0);
   const [filmDetail, setFilmDetail] = useState<IFilmDetailProps>({
@@ -32,7 +31,6 @@ const FilmWatch = () => {
   useEffect(() => {
     const getFilmDetail = async () => {
       const filmTrailer = await filmAPI.getFilmDetail(idFilm);
-      setFilmTrailers(filmTrailer.data.videos.results[0].key);
       setFilmDetail(filmTrailer.data);
       setVote(filmTrailer.data.vote_average);
     };
@@ -70,7 +68,7 @@ const FilmWatch = () => {
         height={"480px"}
         allowFullScreen
         id="iframe"
-        src={`https://www.2embed.ru/embed/tmdb/movie?id=${idFilm}`}
+        src={`${watchLink}`}
         frameBorder="0"
       ></iframe>
     );
@@ -142,7 +140,6 @@ const FilmWatch = () => {
             onChange={(e: number) => handleRate(e)}
           />
           <p className="my-4 text-textColor">{rate}</p>
-          {/* <FilmReview /> */}
         </div>
 
         <div className="w-1/4 ">
@@ -155,5 +152,4 @@ const FilmWatch = () => {
     </div>
   );
 };
-
 export default FilmWatch;

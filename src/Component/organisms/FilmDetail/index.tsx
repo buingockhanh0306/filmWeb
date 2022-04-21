@@ -59,6 +59,9 @@ const FilmDetail = () => {
   const handleWatchFilm = () => {
     router.push(`/movie/${idFilm}/watch`);
   };
+  const handleWatchTrailler = () => {
+    router.push(`/movie/${idFilm}/trailler`);
+  };
 
   const renderCredit = () => {
     return filmCredits.map((cre, index) => {
@@ -95,7 +98,7 @@ const FilmDetail = () => {
         <div className="flex justify-between mt-4 w-80">
           <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
           <ButtonTrailer
-            onClick={() => handleWatchFilm()}
+            onClick={() => handleWatchTrailler()}
             children="Xem trailer"
           />
         </div>
