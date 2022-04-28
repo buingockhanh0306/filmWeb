@@ -32,13 +32,6 @@ const FilmPopular: React.FC = () => {
 
   const renderFilm = () => {
     return films.map((film, index) => {
-      const arrGenreID = film.genre_ids.map((i) => i);
-      const arrGenres: string[] = [];
-      genres.map((genre) => {
-        for (let i = 0; i < arrGenreID.length; i++) {
-          genre.id == arrGenreID[i] ? arrGenres.push(genre.name) : null;
-        }
-      });
       return (
         <div key={index}>
           <ImageCard
@@ -47,7 +40,7 @@ const FilmPopular: React.FC = () => {
             key={index}
             src={pathImage + film.backdrop_path}
             title={film.title}
-            genres={arrGenres.join(" / ")}
+            genres={""}
           />
         </div>
       );
@@ -56,7 +49,9 @@ const FilmPopular: React.FC = () => {
   return (
     <div>
       <Heading children="Phim phổ biến" />
-      <div className="grid grid-cols-5 gap-4 mt-5">{renderFilm()}</div>
+      <div className="grid grid-cols-2 gap-4 p-4 mt-5 md:grid-cols-5 md:p-auto">
+        {renderFilm()}
+      </div>
     </div>
   );
 };

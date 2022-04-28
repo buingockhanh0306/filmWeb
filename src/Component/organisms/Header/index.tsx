@@ -3,7 +3,6 @@ import ButtonDefault from "../../atoms/Button/ButtonDefaut";
 import Logo from "../../atoms/Logo";
 import SearchBar from "../../atoms/SearchBar";
 import GroupIcons from "../../molecules/GroupIcons";
-import Navbar from "../../molecules/Navbar";
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);

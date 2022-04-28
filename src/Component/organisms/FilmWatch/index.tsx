@@ -6,6 +6,7 @@ import filmAPI from "../../../pages/api/axios/filmAPI";
 import Line from "../../atoms/line";
 import StarRate from "../../atoms/StarRate";
 import FilmItem from "../../molecules/FilmItem";
+import FilmRecommended from "../FilmRecommended";
 import FilmTop from "../FilmTop";
 
 type IFilmDetailProps = Pick<
@@ -64,12 +65,11 @@ const FilmWatch: React.FC<any> = ({ watchLink }) => {
   const renderTrailer = () => {
     return (
       <iframe
-        width={"100%"}
-        height={"480px"}
         allowFullScreen
         id="iframe"
         src={`${watchLink}`}
         frameBorder="0"
+        className="h-auto w-max md:w-full md:h-96"
       ></iframe>
     );
   };
@@ -119,16 +119,19 @@ const FilmWatch: React.FC<any> = ({ watchLink }) => {
         break;
     }
   };
+
   return (
     <div className="container mx-auto">
-      <div className="flex w-full gap-12 p-4 ">
+      <div className="flex w-full gap-0 p-4 md:gap-12 ">
         <div className="w-3/4">
           {renderTrailer()}
-          <h1 className="my-4 text-6xl text-secondColor">{filmDetail.title}</h1>
-          <div className="inline-block my-4 mr-2 text-xl text-secondColor">
+          <h1 className="my-4 text-2xl md:text-6xl text-secondColor">
+            {filmDetail.title}
+          </h1>
+          <div className="block mr-2 text-xl md:inline-block md:my-4 text-secondColor">
             Đánh giá phim
           </div>
-          <span className="text-textColor">
+          <span className="block my-2 text-textColor md:my-0 md:inline-block">
             ({filmDetail.vote_average}
             <AiFillStar className="inline mx-1 mb-1 text-starColor" />/
             {filmDetail.vote_count} lượt bình chọn)
@@ -142,13 +145,14 @@ const FilmWatch: React.FC<any> = ({ watchLink }) => {
           <p className="my-4 text-textColor">{rate}</p>
         </div>
 
-        <div className="w-1/4 ">
+        <div className="hidden w-full md:w-1/4 md:block">
           <h5 className="text-textColor">Phim được đề xuất</h5>
           <Line />
           {renderRecommentFilm()}
         </div>
       </div>
       <FilmTop />
+      <FilmRecommended />
     </div>
   );
 };

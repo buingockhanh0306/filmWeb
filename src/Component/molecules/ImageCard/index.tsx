@@ -33,7 +33,9 @@ const ImageCard: React.FC<IImageCardProps> = ({
       <h5 className="py-2 font-bold text-center cursor-pointer text-textColor hover:text-secondColor">
         {title}
       </h5>
-      <p className="text-sm text-center text-textColor">{genres}</p>
+      <p className="hidden text-sm text-center md:block text-textColor">
+        {genres}
+      </p>
     </div>
   );
 };

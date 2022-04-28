@@ -91,11 +91,11 @@ const FilmDetail = () => {
   };
 
   return (
-    <div className="flex gap-8 p-4 text-textColor">
+    <div className="flex flex-col gap-8 p-4 md:flex-row text-textColor">
       <ImagePoster poster_path={films.poster_path} />
       <div>
         {renderFilm()}
-        <div className="flex justify-between mt-4 w-80">
+        <div className="fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 mt-4 md:relative bg-primaryColor md:bg-transparent md:w-96 md:justify-between md:flex">
           <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
           <ButtonTrailer
             onClick={() => handleWatchTrailler()}

@@ -8,6 +8,10 @@ import filmAPI from "../../../pages/api/axios/filmAPI";
 import ImageCard from "../../molecules/ImageCard";
 
 const FilmTop: React.FC = () => {
+  function HiddenArrow() {
+    return <div style={{ display: "none" }} />;
+  }
+
   const settings = {
     dots: false,
     infinite: true,
@@ -16,6 +20,29 @@ const FilmTop: React.FC = () => {
     autoplay: true,
     speed: 500,
     autoplaySpeed: 6000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: false,
+          dots: false,
+          nextArrow: <HiddenArrow />,
+          prevArrow: <HiddenArrow />,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          nextArrow: <HiddenArrow />,
+          prevArrow: <HiddenArrow />,
+        },
+      },
+    ],
   };
   const [films, setFilms] = useState<IFilmProps[]>([]);
   const [genres, setGenres] = useState<IGenresProps[]>([]);

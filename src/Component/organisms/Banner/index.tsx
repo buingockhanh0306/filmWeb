@@ -51,8 +51,8 @@ const Banner: React.FC = () => {
                 height="100vh"
                 src={pathImage + film.backdrop_path}
               />
-              <div className="absolute w-1/2 text-textColor bottom-44 left-10">
-                <h1 className="text-6xl ">{film.title}</h1>
+              <div className="absolute hidden w-1/2 md:block text-textColor bottom-44 left-10">
+                <h1 className="text-4xl md:text-6xl">{film.title}</h1>
                 <p className="my-6">{film.overview}</p>
                 <div className="flex">
                   <div className="mr-4">

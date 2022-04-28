@@ -7,7 +7,7 @@ interface IHeadingProps {
 const Heading: React.FC<IHeadingProps> = ({ children }) => {
   return (
     <div>
-      <h1 className="mt-12 mb-6 text-4xl text-textColor text-700">
+      <h1 className="px-4 mt-12 mb-6 text-4xl md:px-auto text-textColor text-700">
         {children}
       </h1>
       <Line />
