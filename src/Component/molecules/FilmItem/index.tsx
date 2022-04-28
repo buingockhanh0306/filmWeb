@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { IFilmProps } from "../../../../types/IProps";
+import { IFilmProps } from "../../../types/IProps";
 import StarRate from "../../atoms/StarRate";
 
 type IFilmItemProps = Pick<

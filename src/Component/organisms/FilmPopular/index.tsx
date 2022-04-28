@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IFilmProps, IGenresProps } from "../../../../types/IProps";
+import { IFilmProps, IGenresProps } from "../../../types/IProps";
 import filmAPI from "../../../pages/api/axios/filmAPI";
 import Heading from "../../atoms/Heading";
 import Line from "../../atoms/line";
@@ -40,7 +40,7 @@ const FilmPopular: React.FC = () => {
         }
       });
       return (
-        <div key={index}>
+        <div key={index} className="mx-auto">
           <ImageCard
             category="movie"
             id={film.id}
@@ -56,7 +56,9 @@ const FilmPopular: React.FC = () => {
   return (
     <div>
       <Heading children="Phim phổ biến" />
-      <div className="grid grid-cols-5 gap-4 mt-5">{renderFilm()}</div>
+      <div className="grid gap-4 my-auto mt-5 lg:grid-cols-5 md:grid-cols-3 sm-grid-cols-2">
+        {renderFilm()}
+      </div>
     </div>
   );
 };

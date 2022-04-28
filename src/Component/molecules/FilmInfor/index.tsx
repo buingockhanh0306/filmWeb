@@ -1,5 +1,5 @@
 import React from "react";
-import { IFilmProps } from "../../../../types/IProps";
+import { IFilmProps } from "../../../types/IProps";
 import StarRate from "../../atoms/StarRate";
 import { AiFillStar } from "react-icons/ai";
 import ButtonDefault from "../../atoms/Button/ButtonDefaut";

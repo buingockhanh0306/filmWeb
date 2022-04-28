@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { GoSearch } from "react-icons/go";
 import { IoMdNotifications } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";

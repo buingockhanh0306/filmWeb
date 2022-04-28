@@ -1,5 +1,5 @@
 import React from "react";
-import { ILinkProps } from "../../../../../types/IProps";
+import { ILinkProps } from "../../../../types/IProps";
 
 type ILinkDropDownProps = Pick<ILinkProps, "children">;
 

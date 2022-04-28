@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
-import { IFilmProps } from "../../../../types/IProps";
+import { IFilmProps } from "../../../types/IProps";
 import filmAPI from "../../../pages/api/axios/filmAPI";
 import Line from "../../atoms/line";
 import StarRate from "../../atoms/StarRate";

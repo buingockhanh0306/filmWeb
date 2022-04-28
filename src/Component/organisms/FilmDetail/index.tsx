@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { IFilmProps } from "../../../../types/IProps";
+import { IFilmProps } from "../../../types/IProps";
 import filmAPI from "../../../pages/api/axios/filmAPI";
 import ButtonPlay from "../../atoms/Button/ButtonPlay";
 import ButtonTrailer from "../../atoms/Button/ButtonTrailer";

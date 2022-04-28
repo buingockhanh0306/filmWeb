@@ -3,20 +3,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Heading from "../../atoms/Heading";
-import { IFilmProps, IGenresProps } from "../../../../types/IProps";
+import { IFilmProps, IGenresProps } from "../../../types/IProps";
 import filmAPI from "../../../pages/api/axios/filmAPI";
 import ImageCard from "../../molecules/ImageCard";
+import { settings } from "../../../utils/settingSlider";
 
 const FilmTop: React.FC = () => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    autoplay: true,
-    speed: 500,
-    autoplaySpeed: 6000,
-  };
   const [films, setFilms] = useState<IFilmProps[]>([]);
   const [genres, setGenres] = useState<IGenresProps[]>([]);
 
@@ -41,7 +33,7 @@ const FilmTop: React.FC = () => {
   return (
     <div>
       <Heading children="Top Phim" />
-      <Slider {...settings} className="grid grid-cols-5">
+      <Slider {...settings}>
         {films.map((film, index) => {
           const arrGenreID = film.genre_ids.map((i) => i);
           const arrGenres: string[] = [];

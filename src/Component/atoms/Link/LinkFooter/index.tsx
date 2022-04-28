@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { ILinkProps } from "../../../../../types/IProps";
+import { ILinkProps } from "../../../../types/IProps";
 
 const LinkFooter: React.FC<ILinkProps> = ({ href, children }) => {
   return (

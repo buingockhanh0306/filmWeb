@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Heading from "../../atoms/Heading";
-import { IFilmProps, IGenresProps } from "../../../../types/IProps";
+import { IFilmProps, IGenresProps } from "../../../types/IProps";
 import filmAPI from "../../../pages/api/axios/filmAPI";
 import ImageCard from "../../molecules/ImageCard";
 import { useRouter } from "next/router";

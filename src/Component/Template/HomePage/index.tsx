@@ -7,7 +7,9 @@ import FilmTrending from "../../organisms/FilmTrending";
 const HomePage = () => {
   return (
     <div className="bg-primaryColor">
-      <Banner />
+      <div className="sm:hidden md:visible">
+        <Banner />
+      </div>
       <div className="container h-full mx-auto">
         <FilmTop />
         {/* <FilmTrending /> */}

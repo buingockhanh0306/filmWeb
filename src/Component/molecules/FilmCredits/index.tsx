@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IFilmProps } from "../../../../types/IProps";
+import { IFilmProps } from "../../../types/IProps";
 
 type IFilmCredit = Pick<IFilmProps, "name" | "profile_path" | "character">;
 
