@@ -8,7 +8,7 @@ const axiosClient = axios.create({
   },
   params: {
     // language: "vi",
-    api_key: "461216745fbea586a0d4e6b9b73afefc",
+    api_key: process.env.NEXT_PUBLIC_API_KEY,
     append_to_response: "videos",
   },
   paramsSerializer: (params) => queryString.stringify(params),
