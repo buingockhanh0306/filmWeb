@@ -6,7 +6,10 @@ import ButtonPlay from "../../atoms/Button/ButtonPlay";
 import ButtonTrailer from "../../atoms/Button/ButtonTrailer";
 import ImagePoster from "../../atoms/ImagePoster";
 import FilmInfor from "../../molecules/FilmInfor";
+import Slider from "react-slick";
+
 import FilmCredits from "../../molecules/FilmCredits";
+import Heading from "../../atoms/Heading";
 
 type IFilmDetail = Pick<
   IFilmProps,
@@ -65,15 +68,17 @@ const FilmDetail = () => {
 
   const renderCredit = () => {
     return filmCredits.map((cre, index) => {
-      return cre.profile_path !== null && index < 8 ? (
-        <FilmCredits
-          name={cre.name}
-          profile_path={image_path + cre.profile_path}
-          character={cre.character}
-        />
-      ) : (
-        ""
-      );
+      if (index < 5) {
+        return (
+          <div className="">
+            <FilmCredits
+              name={cre.name}
+              profile_path={image_path + cre.profile_path}
+              character={cre.character}
+            />
+          </div>
+        );
+      }
     });
   };
   const renderFilm = () => {
@@ -91,19 +96,23 @@ const FilmDetail = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 p-4 md:flex-row text-textColor">
-      <ImagePoster poster_path={films.poster_path} />
-      <div>
-        {renderFilm()}
-        <div className="fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 mt-4 md:relative bg-primaryColor md:bg-transparent md:w-96 md:justify-between md:flex">
-          <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
-          <ButtonTrailer
-            onClick={() => handleWatchTrailler()}
-            children="Xem trailer"
-          />
+    <div className="container h-full mx-auto">
+      <div className="flex flex-col gap-8 p-4 md:flex-row text-textColor">
+        <ImagePoster poster_path={films.poster_path} />
+        <div>
+          {renderFilm()}
+          <div className="fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 mt-4 md:relative bg-primaryColor md:bg-transparent md:w-96 md:justify-between md:flex">
+            <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
+            <ButtonTrailer
+              onClick={() => handleWatchTrailler()}
+              children="Xem trailer"
+            />
+          </div>
         </div>
-        <h3 className="mt-8">Một số diễn viên: </h3>
-        <div className="grid w-full grid-cols-2 mt-4">{renderCredit()}</div>
+      </div>
+      <div className="">
+        <Heading children="Các diễn viên chính" />
+        <div className="grid grid-cols-5">{renderCredit()}</div>
       </div>
     </div>
   );

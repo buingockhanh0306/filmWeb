@@ -28,7 +28,7 @@ const FilmInfor: React.FC<IFilmInForProps> = ({
   };
   return (
     <div>
-      <h1 className="text-2xl md:text=6xl text-secondColor">{title}</h1>
+      <h1 className="text-2xl md:text-6xl text-secondColor">{title}</h1>
       <p className="py-6">Thể loại: {name}</p>
       <p className="">
         Ngày phát hành: {datetime(release_date).toLocaleDateString("vi")}

@@ -7,7 +7,7 @@ const axiosClient = axios.create({
     "content-type": "application.json",
   },
   params: {
-    // language: "vi",
+    language: "vi",
     api_key: process.env.NEXT_PUBLIC_API_KEY,
     append_to_response: "videos",
   },
