@@ -14,3 +14,4 @@ const FilmDetailPage = () => {
 };
 
 export default FilmDetailPage;
+//Bui Ngoc Khanh
