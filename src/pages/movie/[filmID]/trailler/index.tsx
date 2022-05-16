@@ -11,10 +11,12 @@ const Trailler = () => {
   useEffect(() => {
     const getFilmDetail = async () => {
       const filmTrailer = await filmAPI.getFilmDetail(idFilm);
-      setFilmTrailers(filmTrailer.data.videos.results[0].key);
+      // console.log(filmTrailer.data.videos);
+      setFilmTrailers(filmTrailer.data.videos);
     };
     getFilmDetail();
   }, []);
+  console.log(filmTrailers);
 
   return (
     <FilmWatch watchLink={`https://www.youtube.com/embed/${filmTrailers}`} />

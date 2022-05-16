@@ -21,6 +21,7 @@ type IFilmDetail = Pick<
   | "vote_count"
   | "runtime"
   | "name"
+  | "homepage"
 >;
 type IGenre = Pick<IFilmProps, "name">;
 type IFilmCredit = Pick<IFilmProps, "name" | "profile_path" | "character">;
@@ -38,6 +39,7 @@ const FilmDetail = () => {
     runtime: 0,
     name: "",
     poster_path: "",
+    homepage: "",
   });
   const idFilm = router.query.filmID;
 
@@ -45,10 +47,9 @@ const FilmDetail = () => {
     const getFilmCredits = async () => {
       const film = await filmAPI.getFilmCredits(idFilm);
       setFilmCredits(film.data.cast);
-      console.log(film.data.cast);
     };
     getFilmCredits();
-  }, []);
+  }, [idFilm]);
 
   useEffect(() => {
     const getFilmDetail = async () => {
@@ -57,7 +58,7 @@ const FilmDetail = () => {
       setGenres(film.data.genres);
     };
     getFilmDetail();
-  }, []);
+  }, [idFilm]);
 
   const handleWatchFilm = () => {
     router.push(`/movie/${idFilm}/watch`);
@@ -68,9 +69,9 @@ const FilmDetail = () => {
 
   const renderCredit = () => {
     return filmCredits.map((cre, index) => {
-      if (index < 5) {
+      if (index < 8) {
         return (
-          <div className="">
+          <div>
             <FilmCredits
               name={cre.name}
               profile_path={image_path + cre.profile_path}
@@ -101,6 +102,12 @@ const FilmDetail = () => {
         <ImagePoster poster_path={films.poster_path} />
         <div>
           {renderFilm()}
+          <p className="my-4">
+            Link nhà phát hành:{" "}
+            <a className="text-secondColor" href={films.homepage}>
+              {films.homepage}
+            </a>
+          </p>
           <div className="fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 mt-4 md:relative bg-primaryColor md:bg-transparent md:w-96 md:justify-between md:flex">
             <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
             <ButtonTrailer
@@ -110,9 +117,9 @@ const FilmDetail = () => {
           </div>
         </div>
       </div>
-      <div className="">
+      <div className="hidden md:block">
         <Heading children="Các diễn viên chính" />
-        <div className="grid grid-cols-5">{renderCredit()}</div>
+        <div className="grid grid-cols-8">{renderCredit()}</div>
       </div>
     </div>
   );

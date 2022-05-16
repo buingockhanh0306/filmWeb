@@ -35,7 +35,8 @@ const FilmRecommended: React.FC = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
+          infinite: false,
+          dots: false,
           nextArrow: <HiddenArrow />,
           prevArrow: <HiddenArrow />,
         },
@@ -55,7 +56,7 @@ const FilmRecommended: React.FC = () => {
       setFilms(film.data.results);
     };
     getFilm();
-  }, []);
+  }, [idFilm]);
 
   useEffect(() => {
     const getGenres = async () => {
@@ -63,12 +64,12 @@ const FilmRecommended: React.FC = () => {
       setGenres(genre.data.genres);
     };
     getGenres();
-  }, []);
+  }, [idFilm]);
 
   return (
     <div>
       <Heading children="Phim liên quan" />
-      <Slider {...settings} className="grid grid-cols-5">
+      <Slider {...settings} className="grid grid-cols-2 md:grid-cols-5">
         {films.map((film, index) => {
           const arrGenreID = film.genre_ids.map((i) => i);
           const arrGenres: string[] = [];

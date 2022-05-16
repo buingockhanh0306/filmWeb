@@ -67,9 +67,9 @@ const FilmWatch: React.FC<any> = ({ watchLink }) => {
       <iframe
         allowFullScreen
         id="iframe"
-        src={`${watchLink}`}
+        src={watchLink}
         frameBorder="0"
-        className="h-auto w-max md:w-full md:h-96"
+        className="w-full h-auto md:w-full md:h-96"
       ></iframe>
     );
   };

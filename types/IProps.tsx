@@ -19,6 +19,7 @@ export interface IFilmProps {
   author: string;
   content: string;
   author_detail: string[] | number[];
+  homepage: string;
 }
 
 export interface ILinkProps {
