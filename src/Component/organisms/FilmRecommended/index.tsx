@@ -43,6 +43,7 @@ const FilmRecommended: React.FC = () => {
       },
     ],
   };
+
   const [films, setFilms] = useState<IFilmProps[]>([]);
   const [genres, setGenres] = useState<IGenresProps[]>([]);
   const router = useRouter();

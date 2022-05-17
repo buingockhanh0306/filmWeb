@@ -5,6 +5,7 @@ import filmAPI from "../../../pages/api/axios/filmAPI";
 import ButtonMore from "../../atoms/Button/ButtonMore";
 import ButtonPlay from "../../atoms/Button/ButtonPlay";
 import Slider from "react-slick";
+import ClipLoader from "react-spinners/ClipLoader";
 
 type IBannerProps = Pick<
   IFilmProps,
@@ -16,12 +17,14 @@ const Banner: React.FC = () => {
   const router = useRouter();
 
   const [films, setFilms] = useState<IBannerProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     const getFilmDetail = async () => {
       const film = await filmAPI.getFilmPopular();
       setFilms(film.data.results);
     };
     getFilmDetail();
+    setLoading(false);
   }, []);
   const handleClickWatch = (id: number) => {
     router.push(`movie/${id}/watch`);
@@ -40,7 +43,11 @@ const Banner: React.FC = () => {
     arrows: false,
     // cssEase: "linear",
   };
-  return (
+  return loading ? (
+    <div className="flex items-center justify-center h-screen">
+      <ClipLoader color="#D78536" loading={loading} size={60} />
+    </div>
+  ) : (
     <div className="p-0 m-0">
       <Slider {...settings}>
         {films.map((film, index) => {

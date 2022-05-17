@@ -7,6 +7,7 @@ import ButtonTrailer from "../../atoms/Button/ButtonTrailer";
 import ImagePoster from "../../atoms/ImagePoster";
 import FilmInfor from "../../molecules/FilmInfor";
 import Slider from "react-slick";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import FilmCredits from "../../molecules/FilmCredits";
 import Heading from "../../atoms/Heading";
@@ -30,6 +31,8 @@ const FilmDetail = () => {
   const router = useRouter();
   const [genres, setGenres] = useState<IGenre[]>([]);
   const [filmCredits, setFilmCredits] = useState<IFilmCredit[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
   const [films, setFilms] = useState<IFilmDetail>({
     title: "",
     overview: "",
@@ -56,6 +59,7 @@ const FilmDetail = () => {
       const film = await filmAPI.getFilmDetail(idFilm);
       setFilms(film.data);
       setGenres(film.data.genres);
+      setLoading(false);
     };
     getFilmDetail();
   }, [idFilm]);
@@ -96,7 +100,11 @@ const FilmDetail = () => {
     );
   };
 
-  return (
+  return loading ? (
+    <div className="flex items-center justify-center h-screen">
+      <ClipLoader color="#F65F54" loading={loading} size={60} />
+    </div>
+  ) : (
     <div className="container h-full mx-auto">
       <div className="flex flex-col gap-8 p-4 md:flex-row text-textColor">
         <ImagePoster poster_path={films.poster_path} />
