@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ButtonDefault from "../../atoms/Button/ButtonDefaut";
 import Logo from "../../atoms/Logo";
-import SearchBar from "../../atoms/SearchBar";
+import SearchBar from "../../molecules/SearchBar";
 import GroupIcons from "../../molecules/GroupIcons";
 
 const Header = () => {
