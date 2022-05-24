@@ -12,7 +12,7 @@ const Trailler = () => {
     const getFilmDetail = async () => {
       const filmTrailer = await filmAPI.getFilmDetail(idFilm);
       // console.log(filmTrailer.data.videos);
-      setFilmTrailers(filmTrailer.data.videos);
+      setFilmTrailers(filmTrailer.data.videos.results[0].key);
     };
     getFilmDetail();
   }, []);
