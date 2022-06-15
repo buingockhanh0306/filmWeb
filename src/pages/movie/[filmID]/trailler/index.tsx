@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import FilmWatch from "../../../../Component/organisms/FilmWatch";
 import filmAPI from "../../../api/axios/filmAPI";
 
-const Trailler = () => {
+const Trailer = () => {
   const router = useRouter();
   const idFilm = router.query.filmID;
   const [filmTrailers, setFilmTrailers] = useState<string>("");
@@ -12,10 +12,10 @@ const Trailler = () => {
     const getFilmDetail = async () => {
       const filmTrailer = await filmAPI.getFilmDetail(idFilm);
       // console.log(filmTrailer.data.videos);
-      setFilmTrailers(filmTrailer.data.videos.results[0].key);
+      setFilmTrailers(filmTrailer?.data?.videos);
     };
     getFilmDetail();
-  }, []);
+  },[]);
   console.log(filmTrailers);
 
   return (
@@ -23,4 +23,4 @@ const Trailler = () => {
   );
 };
 
-export default Trailler;
+export default Trailer;

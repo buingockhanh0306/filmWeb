@@ -14,7 +14,6 @@ const filmAPI = {
     const url = "/movie/latest";
     return axiosClient.get(url, { params });
   },
-
   getFilmDetail: (id) => {
     const url = `movie/${id}`;
     return axiosClient.get(url);
@@ -60,4 +59,3 @@ const filmAPI = {
 };
 
 export default filmAPI;
-//done
