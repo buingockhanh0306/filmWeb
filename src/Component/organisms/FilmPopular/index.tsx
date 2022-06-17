@@ -15,7 +15,7 @@ const FilmPopular: React.FC<IFilmPopularProps> = ({data}) => {
 
 
   const renderFilm = () => {
-    return data.map((film, index) => {
+    return data?.map((film, index) => {
       return (
         <div key={index}>
           <ImageCard

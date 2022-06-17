@@ -66,10 +66,10 @@ const FilmTop: React.FC<IFilmTopProps> = ({filmData, genresData}): JSX.Element =
       {/* eslint-disable-next-line react/no-children-prop */}
       <Heading children="Top Phim" />
       <Slider {...settings} className="grid grid-cols-5">
-        {filmData.map((film, index) => {
+        {filmData?.map((film, index) => {
           const arrGenreID = film.genre_ids.map((i) => i);
           const arrGenres: string[] = [];
-          genresData.map((genre) => {
+          genresData?.map((genre) => {
             for (let i = 0; i < arrGenreID.length; i++) {
               genre.id == arrGenreID[i] ? arrGenres.push(genre.name) : null;
             }
