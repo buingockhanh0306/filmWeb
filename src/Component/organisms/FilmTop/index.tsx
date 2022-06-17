@@ -1,13 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Heading from "../../atoms/Heading";
-import { IFilmProps, IGenresProps } from "../../../../types/IProps";
-import filmAPI from "../../../pages/api/axios/filmAPI";
 import ImageCard from "../../molecules/ImageCard";
 
-const FilmTop: React.FC = () => {
+interface IFilmTopProps{
+  filmData: {
+    id: number,
+    title: string,
+    overview: string,
+    backdrop_path: string,
+    genre_ids: number[];
+  }[],
+  genresData:{
+    name: string;
+    id: number;
+  }[]
+}
+const FilmTop: React.FC<IFilmTopProps> = ({filmData, genresData}): JSX.Element => {
   function HiddenArrow() {
     return <div style={{ display: "none" }} />;
   }
@@ -44,35 +55,21 @@ const FilmTop: React.FC = () => {
       },
     ],
   };
-  const [films, setFilms] = useState<IFilmProps[]>([]);
-  const [genres, setGenres] = useState<IGenresProps[]>([]);
+
 
   const pathImage = "https://image.tmdb.org/t/p/w500";
 
-  useEffect(() => {
-    const getFilm: () => Promise<void> = async () => {
-      const film = await filmAPI.getFilmTop();
-      setFilms(film.data.results);
-    };
-    getFilm();
-  }, []);
 
-  useEffect(() => {
-    const getGenres = async () => {
-      const genre = await filmAPI.getGenres();
-      setGenres(genre.data.genres);
-    };
-    getGenres();
-  }, []);
 
   return (
     <div>
+      {/* eslint-disable-next-line react/no-children-prop */}
       <Heading children="Top Phim" />
       <Slider {...settings} className="grid grid-cols-5">
-        {films.map((film, index) => {
+        {filmData.map((film, index) => {
           const arrGenreID = film.genre_ids.map((i) => i);
           const arrGenres: string[] = [];
-          genres.map((genre) => {
+          genresData.map((genre) => {
             for (let i = 0; i < arrGenreID.length; i++) {
               genre.id == arrGenreID[i] ? arrGenres.push(genre.name) : null;
             }
@@ -87,7 +84,6 @@ const FilmTop: React.FC = () => {
                   title={film.title}
                   genres={arrGenres.join(" / ")}
                 />
-                {/* {setIDDetail(film.genre_ids)} */}
               </div>
             </div>
           );

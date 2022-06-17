@@ -1,53 +1,49 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
-import { IFilmProps } from "../../../../types/IProps";
-import filmAPI from "../../../pages/api/axios/filmAPI";
 import Line from "../../atoms/line";
 import StarRate from "../../atoms/StarRate";
 import FilmItem from "../../molecules/FilmItem";
 import FilmRecommended from "../FilmRecommended";
 import FilmTop from "../FilmTop";
 
-type IFilmDetailProps = Pick<
-  IFilmProps,
-  "title" | "poster_path" | "vote_average" | "vote_count"
->;
 
-const FilmWatch: React.FC<any> = ({ watchLink }) => {
+interface IFilmWatchProps{
+  filmRecommended:{
+    id: number,
+    poster_path: string,
+    title: string,
+    vote_average: number
+  }[]
+  filmDetail:{
+    title: string,
+    vote_average: number,
+    vote_count: number
+  }
+  filmTop:{
+    id: number,
+    title: string,
+    overview: string,
+    backdrop_path: string,
+    genre_ids: number[];
+  }[]
+  genres:{
+    name: string;
+    id: number;
+  }[]
+  watchLink: string
+
+}
+
+const FilmWatch: React.FC<IFilmWatchProps> = ({ watchLink, filmDetail, filmRecommended, filmTop, genres }) => {
   const pathImage = "https://image.tmdb.org/t/p/w500";
 
   const router = useRouter();
-  const idFilm = router.query.filmID;
   const [rate, setRate] = useState<string>("");
   const [vote, setVote] = useState<number>(0);
-  const [filmDetail, setFilmDetail] = useState<IFilmDetailProps>({
-    title: "",
-    vote_average: 0,
-    vote_count: 0,
-    poster_path: "",
-  });
-  const [films, setFilms] = useState<IFilmProps[]>([]);
-
-  useEffect(() => {
-    const getFilmDetail = async () => {
-      const filmTrailer = await filmAPI.getFilmDetail(idFilm);
-      setFilmDetail(filmTrailer.data);
-      setVote(filmTrailer.data.vote_average);
-    };
-    getFilmDetail();
-  }, []);
-
-  useEffect(() => {
-    const getFilm: () => Promise<void> = async () => {
-      const film = await filmAPI.getFilmRecommended(idFilm);
-      setFilms(film.data.results);
-    };
-    getFilm();
-  }, []);
 
   const renderRecommentFilm = () => {
-    return films.map((film, index) => {
+    return filmRecommended.map((film, index) => {
       return index < 10 ? (
         <FilmItem
           key={index}
@@ -150,7 +146,7 @@ const FilmWatch: React.FC<any> = ({ watchLink }) => {
           {renderRecommentFilm()}
         </div>
       </div>
-      <FilmTop />
+      <FilmTop filmData={filmTop} genresData={genres}/>
       <FilmRecommended />
     </div>
   );

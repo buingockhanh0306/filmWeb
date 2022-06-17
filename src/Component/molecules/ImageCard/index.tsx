@@ -22,9 +22,9 @@ const ImageCard: React.FC<IImageCardProps> = ({
   };
   return (
     <div onClick={handleDetailFilm} className="flex flex-col cursor-pointer">
-      <div className="relative group">
+      <div className="relative group hover:animate-[zoomIn_1s_ease]">
         <img
-          className="flex items-center justify-center h-auto rounded hover:animate-[zoomIn_1s_ease] width-full"
+          className="flex items-center justify-center h-auto rounded width-full"
           src={src}
           alt="banner"
         />

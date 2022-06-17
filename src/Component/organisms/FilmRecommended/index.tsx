@@ -69,7 +69,10 @@ const FilmRecommended: React.FC = () => {
 
   return (
     <div>
-      <Heading children="Phim liên quan" />
+      <Heading
+          /* eslint-disable-next-line react/no-children-prop */
+          children="Phim liên quan"
+      />
       <Slider {...settings} className="grid grid-cols-2 md:grid-cols-5">
         {films.map((film, index) => {
           const arrGenreID = film.genre_ids.map((i) => i);

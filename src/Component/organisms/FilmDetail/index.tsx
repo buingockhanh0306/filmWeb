@@ -1,68 +1,42 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { IFilmProps } from "../../../../types/IProps";
-import filmAPI from "../../../pages/api/axios/filmAPI";
+import React from "react";
 import ButtonPlay from "../../atoms/Button/ButtonPlay";
 import ButtonTrailer from "../../atoms/Button/ButtonTrailer";
 import ImagePoster from "../../atoms/ImagePoster";
 import FilmInfor from "../../molecules/FilmInfor";
-import Slider from "react-slick";
-import ClipLoader from "react-spinners/ClipLoader";
 
 import FilmCredits from "../../molecules/FilmCredits";
 import Heading from "../../atoms/Heading";
 
-type IFilmDetail = Pick<
-  IFilmProps,
-  | "title"
-  | "overview"
-  | "poster_path"
-  | "release_date"
-  | "vote_average"
-  | "vote_count"
-  | "runtime"
-  | "name"
-  | "homepage"
->;
-type IGenre = Pick<IFilmProps, "name">;
-type IFilmCredit = Pick<IFilmProps, "name" | "profile_path" | "character">;
-const FilmDetail = () => {
+interface IFilmDetailProps{
+  filmDetail:{
+    id: number,
+    title: string,
+    overview: string,
+    backdrop_path: string,
+    vote_count: number,
+    vote_average: number,
+    release_date: string,
+    runtime: number,
+    homepage: string,
+    poster_path: string,
+    genres:{
+      name: string
+    }[]
+  }
+  filmCredits:{
+    name: string,
+    profile_path: string,
+    character: string
+  }[]
+}
+
+
+const FilmDetail: React.FC<IFilmDetailProps> = ({filmDetail, filmCredits}) => {
   const image_path = "https://image.tmdb.org/t/p/w500";
   const router = useRouter();
-  const [genres, setGenres] = useState<IGenre[]>([]);
-  const [filmCredits, setFilmCredits] = useState<IFilmCredit[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
 
-  const [films, setFilms] = useState<IFilmDetail>({
-    title: "",
-    overview: "",
-    release_date: "",
-    vote_average: 0,
-    vote_count: 0,
-    runtime: 0,
-    name: "",
-    poster_path: "",
-    homepage: "",
-  });
   const idFilm = router.query.filmID;
-
-  useEffect(() => {
-    const getFilmCredits = async () => {
-      const film = await filmAPI.getFilmCredits(idFilm);
-      setFilmCredits(film.data.cast);
-    };
-    getFilmCredits();
-  }, [idFilm]);
-
-  useEffect(() => {
-    const getFilmDetail = async () => {
-      const film = await filmAPI.getFilmDetail(idFilm);
-      setFilms(film.data);
-      setGenres(film.data.genres);
-      setLoading(false);
-    };
-    getFilmDetail();
-  }, [idFilm]);
 
   const handleWatchFilm = () => {
     router.push(`/movie/${idFilm}/watch`);
@@ -89,44 +63,47 @@ const FilmDetail = () => {
   const renderFilm = () => {
     return (
       <FilmInfor
-        title={films.title}
-        overview={films.overview}
-        release_date={films.release_date}
-        vote_average={films.vote_average}
-        vote_count={films.vote_count}
-        runtime={films.runtime}
-        name={genres.map((genre) => genre.name).join(" / ")}
+        title={filmDetail.title}
+        overview={filmDetail.overview}
+        release_date={filmDetail.release_date}
+        vote_average={filmDetail.vote_average}
+        vote_count={filmDetail.vote_count}
+        runtime={filmDetail.runtime}
+        name={filmDetail?.genres?.map((genre) => genre.name).join(" / ")}
       />
     );
   };
 
-  return loading ? (
-    <div className="flex items-center justify-center h-screen">
-      <ClipLoader color="#F65F54" loading={loading} size={60} />
-    </div>
-  ) : (
+  return (
     <div className="container h-full mx-auto">
       <div className="flex flex-col gap-8 p-4 md:flex-row text-textColor">
-        <ImagePoster poster_path={films.poster_path} />
+        <ImagePoster poster_path={filmDetail.poster_path} />
         <div>
           {renderFilm()}
           <p className="my-4">
             Link nhà phát hành:{" "}
-            <a className="text-secondColor" href={films.homepage}>
-              {films.homepage}
+            <a className="text-secondColor" href={filmDetail.homepage}>
+              {filmDetail.homepage}
             </a>
           </p>
           <div className="fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 mt-4 md:relative bg-primaryColor md:bg-transparent md:w-96 md:justify-between md:flex">
-            <ButtonPlay onClick={() => handleWatchFilm()} children="Xem phim" />
+            <ButtonPlay
+                onClick={() => handleWatchFilm()}
+                /* eslint-disable-next-line react/no-children-prop */
+                children="Xem phim" />
             <ButtonTrailer
               onClick={() => handleWatchTrailler()}
+              /* eslint-disable-next-line react/no-children-prop */
               children="Xem trailer"
             />
           </div>
         </div>
       </div>
       <div className="hidden md:block">
-        <Heading children="Các diễn viên chính" />
+        <Heading
+            /* eslint-disable-next-line react/no-children-prop */
+            children="Các diễn viên chính"
+        />
         <div className="grid grid-cols-8">{renderCredit()}</div>
       </div>
     </div>

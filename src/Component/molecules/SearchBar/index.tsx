@@ -45,7 +45,7 @@ const SearchBar = () => {
   };
 
   return (
-    <label className="relative mr-4 w-80 animate-[fadeIn_0.4s_ease]">
+    <label className="relative hidden md:block mr-4 w-80 animate-[fadeIn_0.4s_ease]">
       <span className="absolute inset-y-0 left-0 flex items-center pl-2">
         <svg className="flex items-center w-5 " viewBox="0 0 20 20">
           <GoSearch className="text-gray-300" />

@@ -1,31 +1,21 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { IFilmProps } from "../../../../types/IProps";
-import filmAPI from "../../../pages/api/axios/filmAPI";
+import React from "react";
 import ButtonMore from "../../atoms/Button/ButtonMore";
 import ButtonPlay from "../../atoms/Button/ButtonPlay";
 import Slider from "react-slick";
-import ClipLoader from "react-spinners/ClipLoader";
 
-type IBannerProps = Pick<
-  IFilmProps,
-  "id" | "title" | "overview" | "backdrop_path"
->;
+interface IBannerProps{
+  data: {
+    id: number,
+    title: string,
+    overview: string,
+    backdrop_path: string
+  }[]
+}
 
-const Banner: React.FC = () => {
+const Banner: React.FC<IBannerProps> = ({data}) => {
   const pathImage = "https://image.tmdb.org/t/p/original";
   const router = useRouter();
-
-  const [films, setFilms] = useState<IBannerProps[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  useEffect(() => {
-    const getFilmDetail = async () => {
-      const film = await filmAPI.getFilmPopular();
-      setFilms(film.data.results);
-    };
-    getFilmDetail();
-    setLoading(false);
-  }, []);
   const handleClickWatch = (id: number) => {
     router.push(`movie/${id}/watch`);
   };
@@ -41,19 +31,15 @@ const Banner: React.FC = () => {
     speed: 1000,
     autoplaySpeed: 5000,
     arrows: false,
-    // cssEase: "linear",
   };
-  return loading ? (
-    <div className="flex items-center justify-center h-screen">
-      <ClipLoader color="#D78536" loading={loading} size={60} />
-    </div>
-  ) : (
+  return (
     <div className="p-0 m-0">
       <Slider {...settings}>
-        {films.map((film, index) => {
+        {data?.map((film, index) => {
           return (
-            <div className="relative p-0 m-0">
+            <div key={index} className="relative p-0 m-0">
               <img
+                alt={'image poster'}
                 width="100%"
                 height="100vh"
                 src={pathImage + film.backdrop_path}
@@ -65,11 +51,13 @@ const Banner: React.FC = () => {
                   <div className="mr-4">
                     <ButtonPlay
                       onClick={() => handleClickWatch(film.id)}
+                      /* eslint-disable-next-line react/no-children-prop */
                       children="Xem phim"
                     />
                   </div>
                   <ButtonMore
                     onClick={() => handleClickMore(film.id)}
+                    /* eslint-disable-next-line react/no-children-prop */
                     children="Chi tiết"
                   />
                 </div>
