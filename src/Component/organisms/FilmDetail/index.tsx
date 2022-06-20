@@ -49,7 +49,7 @@ const FilmDetail: React.FC<IFilmDetailProps> = ({filmDetail, filmCredits}) => {
     return filmCredits.map((cre, index) => {
       if (index < 8) {
         return (
-          <div>
+          <div key={index}>
             <FilmCredits
               name={cre.name}
               profile_path={image_path + cre.profile_path}

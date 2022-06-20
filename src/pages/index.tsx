@@ -1,4 +1,3 @@
-import HomePage from "../Component/Template/HomePage";
 import {useRouter} from "next/router";
 import {useEffect} from "react";
 
